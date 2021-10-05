@@ -2,7 +2,7 @@
 
 <% @pictures.each do |pic| %>
   <div class = "content">
-  <p>投稿者：<%= @user.find(pic.user_id) %></p>
+  <p>投稿者：<%= @users.find(pic.user_id).name %></p>
   <h5>タイトル：<%= pic.title %></h5>
   <%= image_tag pic.content_picture.url %>
   <p>コメント：<%= pic.content %></p>
