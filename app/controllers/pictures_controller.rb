@@ -19,7 +19,6 @@ class PicturesController < ApplicationController
     @picture = Picture.find(params[:id]) 
     @users = User.select(:id, :name, :image)
   end
-  
   def edit
     @picture = Picture.find(params[:id])
   end
@@ -31,14 +30,16 @@ class PicturesController < ApplicationController
       render :edit
     end
   end
-  
-  
+  def destroy
+    @picture = Picture.find(params[:id])
+    if @picture.destroy
+      redirect_to pictures_path
+    else
+      render :index
+    end
+  end
   private
   def picture_params
     params.require(:picture).permit(:title, :content, :content_picture)
   end
-  
-  
-  
-  
 end

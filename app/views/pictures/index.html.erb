@@ -8,6 +8,7 @@
   <p>コメント：<%= pic.content %></p>
   <%= link_to "詳細", picture_path(pic.id)%>
   <%= link_to "修正", edit_picture_path(pic.id) %>
+  <%= link_to "削除", picture_path(pic.id), method: :delete, data: {confirm: "削除しますか？"} %>
   </div>
   <%= pic.content_picture_cache %>
 <% end %>
