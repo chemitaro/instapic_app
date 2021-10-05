@@ -9,12 +9,20 @@
     </ul>
   </div>
 <% end %>
-<%= form_with(model: @picture, local: true) do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :content %>
-  <%= f.text_field :content %>
-  <%= f.label :content_picture %>
-  <%= f.file_field :content_picture %>
+<%= form_with( model: @picture, local: true, url: confirm_pictures_path ) do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :content %>
+    <%= f.text_field :content %>
+  </div>
+  <div>
+    <%= f.label :content_picture %>
+    <%= f.file_field :content_picture %>
+    <%= f.hidden_field :content_picthre_cache %>
+  </div>
   <%= f.submit "投稿" %>
+
 <% end %>

@@ -1,0 +1,12 @@
+<h2>投稿確認</h2>
+
+<%= form_with(model: @picture, local: true) do |f| %>
+  <%= f.hidden_field :title %>
+  <%= f.hidden_field :content %>
+  <%= f.hidden_field :content_picture %>
+  <%= f.hidden_field :content_picture_cache %>
+  <h5>タイトル：<%= @picture.title %></h5>
+  <%= image_tag @picture.content_picture.url %>
+  <p>コメント：<%= @picture.content %></p>
+  <%= f.submit "投稿する" %>
+<% end %>
