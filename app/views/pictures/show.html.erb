@@ -1,0 +1,9 @@
+<h1>投稿詳細</h1>
+<div class = "content">
+  <p>投稿者：<%= @users.find(@picture.user_id).name %></p>
+  <h5>タイトル：<%= @picture.title %></h5>
+  <%= image_tag @picture.content_picture.url %>
+  <p>コメント：<%= @picture.content %></p>
+  <%= link_to "修正", edit_picture_path(@picture.id) %>
+</div>
+<%= @picture.content_picture_cache %>

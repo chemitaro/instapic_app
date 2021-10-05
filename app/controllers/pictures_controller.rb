@@ -15,6 +15,11 @@ class PicturesController < ApplicationController
       render :new
     end
   end
+  def show
+    @picture = Picture.find(params[:id]) 
+    @users = User.select(:id, :name, :image)
+  end
+  
   def edit
     @picture = Picture.find(params[:id])
   end

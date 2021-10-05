@@ -6,6 +6,7 @@
   <h5>タイトル：<%= pic.title %></h5>
   <%= image_tag pic.content_picture.url %>
   <p>コメント：<%= pic.content %></p>
+  <%= link_to "詳細", picture_path(pic.id)%>
   <%= link_to "修正", edit_picture_path(pic.id) %>
   </div>
   <%= pic.content_picture_cache %>
