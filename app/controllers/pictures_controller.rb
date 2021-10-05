@@ -1,7 +1,7 @@
 class PicturesController < ApplicationController
   def index
     @pictures = Picture.all
-    @users = User.select(:id, :name)
+    @users = User.select(:id, :name, :image)
   end
   def new
     @picture = Picture.new
