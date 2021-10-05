@@ -4,6 +4,7 @@
   <h5>タイトル：<%= @picture.title %></h5>
   <%= image_tag @picture.content_picture.url %>
   <p>コメント：<%= @picture.content %></p>
-  <%= link_to "修正", edit_picture_path(@picture.id) %>
+  <%= link_to "修正", edit_picture_path(@picture.id) if @picture.user_id == current_user.id %>
+  <%= link_to "削除", picture_path(@picture.id), method: :delete, data: { confirm: '削除しますか？' } if @picture.user_id == current_user.id %>
 </div>
 <%= @picture.content_picture_cache %>

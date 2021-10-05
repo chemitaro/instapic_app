@@ -9,39 +9,50 @@ class PicturesController < ApplicationController
   def create
     @picture = Picture.new(picture_params)
     @picture.user_id = current_user.id
-    if @picture.save
-      redirect_to pictures_path, notice: "写真を投稿しました"
-    else
+    if params[:back]
       render :new
+    else
+      if @picture.save
+        redirect_to pictures_path, notice: "写真を投稿しました"
+      else
+        render :new
+      end
     end
   end
   def confirm
     @picture = Picture.new(picture_params)
     @picture.user_id = current_user.id
-    binding.irb
   end
-  
   def show
     @picture = Picture.find(params[:id]) 
     @users = User.select(:id, :name, :image)
   end
   def edit
     @picture = Picture.find(params[:id])
+    redirect_to pictures_path, notice: "権限がありません" unless @picture.user_id == current_user.id
   end
   def update
     @picture = Picture.find(params[:id])
-    if @picture.update(picture_params)
-      redirect_to pictures_path, notice: "投稿を修正しました"
+    if  @picture.user_id == current_user.id
+      if @picture.update(picture_params)
+        redirect_to pictures_path, notice: "投稿を修正しました"
+      else
+        render :edit
+      end
     else
-      render :edit
+      redirect_to pictures_path, notice: "権限がありません"
     end
   end
   def destroy
     @picture = Picture.find(params[:id])
-    if @picture.destroy
-      redirect_to pictures_path, notice: "投稿を削除しました"
+    if @picture.user_id == current_user.id
+      if @picture.destroy
+        redirect_to pictures_path, notice: "投稿を削除しました"
+      else
+        redirect_to pictures_path
+      end
     else
-      render :index
+      redirect_to pictures_path, notice: "権限がありません"
     end
   end
   private

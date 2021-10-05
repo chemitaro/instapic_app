@@ -10,12 +10,20 @@
   </div>
 <% end %>
 <%= form_with(model: @picture, local: true) do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :content %>
-  <%= f.text_field :content %>
-  <%= f.label :content_picture %>
-  <%= f.file_field :content_picture %>
+  <table>
+    <tr>
+      <th><%= f.label :title, "タイトル：" %></th>
+      <td><%= f.text_field :title %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :content, "内容：" %></th>
+      <td><%= f.text_field :content %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :content_picture, "画像：" %></th>
+      <td><%= f.file_field :content_picture %></td>
+    </tr>
+  </table>
   <%= f.hidden_field :content_picture_cache %>
   <%= f.submit "修正" %>
 <% end %>

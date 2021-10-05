@@ -9,4 +9,5 @@
   <%= image_tag @picture.content_picture.url %>
   <p>コメント：<%= @picture.content %></p>
   <%= f.submit "投稿する" %>
+  <%= f.submit "戻る", name: 'back' %>
 <% end %>
