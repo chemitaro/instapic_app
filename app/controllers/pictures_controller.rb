@@ -27,6 +27,7 @@ class PicturesController < ApplicationController
   def show
     @picture = Picture.find(params[:id]) 
     @users = User.select(:id, :name, :image)
+    @favorite = current_user.favorites.find_by(picture_id: @picture.id)
   end
   def edit
     @picture = Picture.find(params[:id])

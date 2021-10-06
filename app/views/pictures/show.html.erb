@@ -6,5 +6,12 @@
   <p>コメント：<%= @picture.content %></p>
   <%= link_to "修正", edit_picture_path(@picture.id) if @picture.user_id == current_user.id %>
   <%= link_to "削除", picture_path(@picture.id), method: :delete, data: { confirm: '削除しますか？' } if @picture.user_id == current_user.id %>
+  <% unless @picture.user_id == current_user.id %>
+    <% if @favorite.present? %>
+      <%= link_to 'お気に入り解除', favorite_path(id: @favorite.id), method: :delete %>
+    <% else %>
+      <%= link_to 'お気に入り登録', favorites_path(picture_id: @picture.id), method: :post %>
+    <% end %>
+  <% end %>
 </div>
 <%= @picture.content_picture_cache %>
