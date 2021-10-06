@@ -13,6 +13,7 @@ class PicturesController < ApplicationController
       render :new
     else
       if @picture.save
+        PictureConfirmMailer.confirm_mail(@picture, User.find(current_user.id)).deliver
         redirect_to pictures_path, notice: "写真を投稿しました"
       else
         render :new
