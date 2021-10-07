@@ -16,13 +16,18 @@ class UsersController < ApplicationController
   end
   def edit
     @user = User.find(params[:id])
+    redirect_to user_path, notice: "権限がありません" unless @user.id == current_user[:id]
   end
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
-      redirect_to user_path(@user.id), notice: "プロフィールを編集しました"
+    if @user.id == current_user[:id]
+      if @user.update(user_params)
+        redirect_to user_path(@user.id), notice: "プロフィールを編集しました"
+      else
+        render :edit
+      end
     else
-      render :edit
+      redirect_to user_path, notice: "権限がありません"
     end
   end
   

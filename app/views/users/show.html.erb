@@ -1,4 +1,14 @@
 <h1><%= @user.name %>さんのページ</h1>
+<% if @user.errors.any? %>
+  <div id = "error_explanation">
+    <h2><%= pluralize(@user.errors.count,"error") %> prohibited this <%= @user.name %> from being saved:</h2>
+    <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 <table>
   <tr>
     <th><p>メールアドレス：</p></th>
@@ -13,4 +23,4 @@
     <td><p><%= @user.profile %></p></td>
   </tr>
 </table>
-<%= link_to "プロフィール編集", edit_user_path(@user.id) %>
+<%= link_to "プロフィール編集", edit_user_path(@user.id) if @user.id == current_user[:id] %>
