@@ -16,6 +16,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'mimemagic'
 gem 'rexml'
+gem 'faker'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
