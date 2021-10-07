@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
   resources :favorites
+  get '/', to: 'pictures#index'
   resources :pictures do
     collection do
       post :confirm
