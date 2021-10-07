@@ -1,0 +1,12 @@
+<h1>お気に入り一覧</h1>
+
+<% @favorite_pictures.each do |pic| %>
+  <div class = "content">
+  <p>投稿者：<%= @users.find(pic.user_id).name %></p>
+  <h5>タイトル：<%= pic.title %></h5>
+  <%= image_tag pic.content_picture.url %>
+  <p>コメント：<%= pic.content %></p>
+  <%= link_to "詳細", picture_path(pic.id)%>
+  </div>
+  <%= pic.content_picture_cache %>
+<% end %>

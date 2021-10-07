@@ -7,4 +7,8 @@ class FavoritesController < ApplicationController
     favorite = current_user.favorites.find_by(id: params[:id]).destroy
     redirect_to pictures_path, notice: "#{favorite.picture.user.name}さんの投稿をお気に入りから削除しました"
   end
+  def show
+    @favorite_pictures = Picture.where(id: Favorite.where(user_id: params[:id]).select(:picture_id))
+    @users = User.select(:id, :name, :image)
+  end  
 end
